@@ -4,7 +4,7 @@ def jsonParse(def json) {
     new groovy.json.JsonSlurperClassic().parseText(json)
 }
 
-node('main') {
+node('principal') {
   stage('Checkout and set agent'){
      checkout scm
      if (env.BRANCH_NAME == 'main') {
