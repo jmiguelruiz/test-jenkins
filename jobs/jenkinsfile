@@ -11,7 +11,7 @@ agent {
     stages {
         stage('build') {
             steps {
-                sh 'node --version'
+                sh 'echo "hola mundo"'
             }
         }
     }
