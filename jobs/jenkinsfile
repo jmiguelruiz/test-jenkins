@@ -4,8 +4,22 @@ def jsonParse(def json) {
     new groovy.json.JsonSlurperClassic().parseText(json)
 }
 
+node('master') {
+  stage('Checkout and set agent'){
+     checkout scm
+     ### Or just use any other approach to figure out agent label: read file, etc
+     if (env.BRANCH_NAME == 'main') {
+        AGENT_LABEL = "prod"
+     } else {
+        AGENT_LABEL = "dev"
+     }
+   }
+}
+
 pipeline {
-    agent { label: 'any'}
+    agent {
+       label "${AGENT_LABEL}"
+    }
     stages {
         stage('build') {
             steps {
