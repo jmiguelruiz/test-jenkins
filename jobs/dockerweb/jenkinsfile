@@ -22,9 +22,7 @@ pipeline {
             steps {
                 script{
                     sh ''' 
-                         docker kill ${name_final}
-                         sleep 5
-                         docker rm ${name_final}
+                         docker stop ${name_final} || true && docker rm ${name_final} || true
                     '''
                     }
                     
